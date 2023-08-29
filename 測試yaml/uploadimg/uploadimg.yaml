@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uploadimg
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: uploadimg
+  strategy:
+    type: RollingUpdate  
+    rollingUpdate:
+      maxUnavailable: 1  
+      maxSurge: 1  
+  template:
+    metadata:
+      labels:
+        app: uploadimg
+    spec:
+      containers:
+      - name: uploadimg
+        image: zihrueiliou/uploadimg:v1.0.0
+        ports:
+        - containerPort: 13503  
+        resources: {}
+        volumeMounts:
+        - mountPath: /code/static/images
+          name: pv-storage
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: pv-storage
+        persistentVolumeClaim:
+          claimName: uploadimg-pvc
