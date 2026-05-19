@@ -2,27 +2,7 @@
 
 本專案包含兩個主要服務：負責檔案與圖片處理的 Python 服務 (`uploadimg`)，以及負責核心業務邏輯的 C# 服務。兩者皆整合了 GitLab CI/CD 自動化流水線，並支援透過 Kubernetes (K8s) 進行現代化叢集部署。
 
----
 
-## 📂 完整專案架構 (Project Structure)
-
-```text
-your_monorepo_folder/
-├── uploadimg/                # Python 圖片上傳服務
-│   ├── main.py
-│   ├── Dockerfile
-│   ├── .gitlab-ci.yml        # Python 專案 CI/CD 流水線
-│   └── ...
-├── csharp_project/           # C# 核心服務
-│   ├── python/               # C# 內執行 Python 相關任務之程式碼與文件
-│   ├── Dockerfile
-│   ├── .gitlab-ci.yml        # C# 專案 CI/CD 流水線
-│   └── ...
-└── k8s/
-    └── deployment.yaml       # K8s 部署設定檔 (測試用)
-```
-
----
 
 ## 🛠️ 服務說明 (Services Overview)
 
